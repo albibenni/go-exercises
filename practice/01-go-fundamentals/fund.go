@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 type Item struct {
 	Name string
@@ -24,6 +27,10 @@ type Processor interface {
 
 type Logger interface {
 	Log(msg string)
+}
+
+type ProcessorImpl struct {
+	logger Logger
 }
 
 func (s *OrderStore) AddOrder(order Order) {
@@ -73,6 +80,28 @@ func (s *OrderStore) Save(o Order) {
 	s.AddOrderPtr(&o)
 }
 
+func (p ProcessorImpl) Process(order *Order) error {
+	start := time.Now()
+	defer func() {
+		p.logger.Log(fmt.Sprintf("Process took %s", time.Since(start)))
+	}()
+
+	if order == nil || order.Items == nil {
+		panic("corrupted order: nil order or nil items")
+	}
+
+	return nil
+}
+
+func SafeProcess(p Processor, order *Order) (err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			err = fmt.Errorf("safe process recovered panic: %v", r)
+		}
+	}()
+	return p.Process(order)
+}
+
 func main() {
 	store := &OrderStore{Orders: map[string]Order{}}
 	o1 := Order{ID: "A", Total: 100}
@@ -101,4 +130,10 @@ func main() {
 
 	cl := ConsoleLogger{}
 	UseLogger(cl) // implicit implementation
+
+	processor := ProcessorImpl{logger: cl}
+	badOrder := &Order{ID: "X", Total: 50}
+	if err := SafeProcess(processor, badOrder); err != nil {
+		fmt.Println("safe process error:", err)
+	}
 }
