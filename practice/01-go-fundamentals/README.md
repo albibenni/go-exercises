@@ -29,25 +29,36 @@
 - Overuse of `interface{}` / `any` without need
 - Panic used for business logic
 
-Define:
+### Define:
+
 Order struct (ID, Items, Status, Total)
 OrderStore struct with map[string]Order
-Processor interface with Process(order *Order) error
-Implement:
-AddOrder(order Order) and AddOrderPtr(order*Order) to show value vs pointer behavior.
+Processor interface with Process(order \*Order) error
+
+### Implement:
+
+AddOrder(order Order) and AddOrderPtr(order\*Order) to show value vs pointer behavior.
 GetOrInitOrders() []Order where the internal slice can be nil; handle safely.
 A function that appends items to a passed slice and explain/observe append side effects (capacity reallocation vs shared backing array).
-Use methods:
+
+### Use methods:
+
 func (s OrderStore) Count() int (value receiver)
 func (s *OrderStore) Save(o Order) (pointer receiver)
 Then explain which methods are in the method set of OrderStore vs*OrderStore.
-Interfaces:
+
+### Interfaces:
+
 Create type Logger interface { Log(msg string) }
 Have ConsoleLogger implement it implicitly (no implements keyword).
-Reliability:
+
+### Reliability:
+
 In Process, use defer to log completion time.
 Introduce a panic for corrupted input (nil item list), and recover in a top-level SafeProcess wrapper using defer + recover.
-Errors:
+
+### Errors:
+
 Return wrapped errors with context, e.g.:
 fmt.Errorf("validate order %s: %w", o.ID, err)
 fmt.Errorf("save order %s: %w", o.ID, err)
