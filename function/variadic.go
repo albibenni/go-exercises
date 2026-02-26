@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func main_variadic() {
 	fmt.Printf("------\n")
 
 	fmt.Printf("sum - %d\n", sum(1, 2, 5, 10))

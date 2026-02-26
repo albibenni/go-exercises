@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func main_cicle() {
 
 	i := 0
 	//sim while

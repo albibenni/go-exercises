@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func main_defer() {
 	fmt.Println("Starting main function")
 	fmt.Println("-------")
 	multipleDefers()

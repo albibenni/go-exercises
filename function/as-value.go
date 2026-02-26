@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func main_as_value() {
 	fmt.Printf("------\n")
 	var asValue func(int, int) int
 	asValue = sumi

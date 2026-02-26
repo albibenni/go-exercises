@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func main_make() {
 	// make([]Type, length, capacity)
 	s1 := make([]int, 5)       // Creates slice with length 5, capacity 5, zero values
 	s2 := make([]int, 3, 10)   // Creates slice with length 3, capacity 10
