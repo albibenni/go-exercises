@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func main_map() {
 
 	grades := make(map[string]int)
 

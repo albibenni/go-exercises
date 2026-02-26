@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func main() {
+func main_1_9() {
 	for _, url := range os.Args[1:] {
 		if !strings.Contains(url, "https") {
 			url = "https://" + url

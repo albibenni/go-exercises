@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-func main() {
+func main_1_2() {
 	var s, sep string
 	for i := range os.Args {
 		s += sep + strconv.Itoa(i) + " " + os.Args[i]

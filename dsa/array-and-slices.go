@@ -5,7 +5,7 @@ import (
 	"unsafe"
 )
 
-func main() {
+func main_array_and_slices() {
 	s := make([]int, 8)
 	ar := [...]int{1, 2, 3, 4} // infer
 

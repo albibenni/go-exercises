@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func main() {
+func main_1_4() {
 	counts := make(map[string]int)
 	count := 0
 	files := os.Args[1:]

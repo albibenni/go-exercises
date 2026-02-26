@@ -18,7 +18,7 @@ func v1(str []string) string {
 func v2OPT(str []string) string {
 	return strings.Join(str[0:], " ")
 }
-func main() {
+func main_1_3() {
 	args := os.Args
 	start := time.Now()
 	res := v1(args)

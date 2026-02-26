@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func main_string() {
 	s := "my string"
 	bytes := []byte(s)
 	run := []rune(s)

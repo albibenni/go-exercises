@@ -16,12 +16,12 @@ func intToStr() {
 	fmt.Printf("FormatInt - %s\n", str2) // "42"
 
 	num3 := 65
-	char := string(num3)
+	char := string(rune(num3))
 	fmt.Println(char)
 	fmt.Printf("string() conversion - %s\n", char) // "A" (ASCII 65)
 
 	num2 := 8364
-	char2 := string(num2)
+	char2 := string(rune(num2))
 	fmt.Printf("string() conversion € (Unicode 8364) - %s\n", char2) // "€" (Unicode 8364)
 
 	num4 := 42
@@ -87,16 +87,16 @@ func example() {
 	// Character conversion
 	fmt.Println("\n=== Int to Character ===")
 	ascii := 65
-	char := string(ascii)
+	char := string(rune(ascii))
 	fmt.Printf("string(%d) = %s\n", ascii, char)
 
 	unicode := 8364
-	euroChar := string(unicode)
+	euroChar := string(rune(unicode))
 	fmt.Printf("string(%d) = %s\n", unicode, euroChar)
 
 }
 
-func main() {
+func main_string_int() {
 	fmt.Printf("----------\n")
 	intToStr()
 	fmt.Printf("----------\n")

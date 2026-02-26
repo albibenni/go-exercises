@@ -52,6 +52,6 @@ func lissajous(out io.Writer) {
 	gif.EncodeAll(out, &anim) // NOTE: ignoring encoding errors
 }
 
-func main() {
+func main_1_5() {
 	lissajous(os.Stdout)
 }
