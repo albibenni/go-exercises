@@ -5,7 +5,7 @@ import (
 	"unsafe"
 )
 
-func main() {
+func main_size() {
 	// Basic types
 	fmt.Printf("bool:       %d bytes\n", unsafe.Sizeof(bool(true)))
 	fmt.Printf("int8:       %d bytes\n", unsafe.Sizeof(int8(0)))
