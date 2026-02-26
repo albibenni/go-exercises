@@ -16,12 +16,15 @@ type OrderStore struct {
 	Orders map[string]Order
 }
 
+type ConsoleLogger struct{}
+
 type Processor interface {
 	Process(order *Order) error
 }
 
-// type Logger interface {
-// }
+type Logger interface {
+	Log(msg string)
+}
 
 func (s *OrderStore) AddOrder(order Order) {
 	if s.Orders == nil {
@@ -49,6 +52,14 @@ func (s *OrderStore) GetOrInitOrders() []Order {
 		orders = append(orders, order)
 	}
 	return orders
+}
+
+func (c ConsoleLogger) Log(msg string) {
+	fmt.Println("[LOG]", msg)
+}
+
+func UseLogger(l Logger) {
+	l.Log("order processed")
 }
 
 func AppendItem(items []Item, it Item) []Item {
@@ -87,4 +98,7 @@ func main() {
 	full[0] = Item{Name: "notebook"}
 	_ = AppendItem(full, Item{Name: "eraser"})
 	fmt.Printf("no side effect when reallocated: len(full)=%d cap(full)=%d\n", len(full), cap(full))
+
+	cl := ConsoleLogger{}
+	UseLogger(cl) // implicit implementation
 }
